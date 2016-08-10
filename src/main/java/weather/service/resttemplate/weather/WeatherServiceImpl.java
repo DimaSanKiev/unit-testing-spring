@@ -1,5 +1,6 @@
 package weather.service.resttemplate.weather;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ public class WeatherServiceImpl extends RestApiService<Weather> implements Weath
     private String key;
     private String host;
 
+    @Autowired
     public WeatherServiceImpl(
             @Value("${weather.api.name}") String name,
             @Value("${weather.api.key}") String key,

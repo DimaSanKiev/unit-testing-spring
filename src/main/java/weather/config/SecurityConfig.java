@@ -56,10 +56,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     public AuthenticationFailureHandler loginFailureHandler() {
-        return ((request, response, exception) -> {
-            request.getSession().setAttribute("flash",
-                    new FlashMessage("Incorrect username or password. Please try again.", FAILURE));
-        });
+        return (request, response, exception) -> request.getSession().setAttribute("flash",
+                new FlashMessage("Incorrect username or password. Please try again.", FAILURE));
     }
 
     @Bean
