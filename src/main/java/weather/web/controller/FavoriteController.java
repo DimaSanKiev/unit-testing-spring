@@ -61,7 +61,7 @@ public class FavoriteController {
     public String add(Favorite favorite, RedirectAttributes redirectAttributes) {
         favoriteService.save(favorite);
         redirectAttributes.addFlashAttribute("flash", new FlashMessage("Added to favorites", SUCCESS));
-        return "redirect:/favorites" + favorite.getId();
+        return "redirect:/favorites/" + favorite.getId();
     }
 
     @RequestMapping(path = "/favorites/{id}/delete", method = RequestMethod.POST)
