@@ -105,11 +105,11 @@ public class User implements UserDetails {
 
     @Override
     public String getPassword() {
-        return PASSWORD_ENCODER.encode(password);
+        return password;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = PASSWORD_ENCODER.encode(password);
     }
 
     @Override
