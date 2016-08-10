@@ -1,6 +1,7 @@
 package weather.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import weather.dao.FavoriteDao;
 import weather.domain.Favorite;
 import weather.exception.FavoriteDeleteException;
@@ -9,6 +10,7 @@ import weather.exception.FavoriteSaveException;
 
 import java.util.List;
 
+@Service
 public class FavoriteServiceImpl implements FavoriteService {
     @Autowired
     private FavoriteDao favoriteDao;

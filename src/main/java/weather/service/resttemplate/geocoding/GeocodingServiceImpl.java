@@ -42,10 +42,6 @@ public class GeocodingServiceImpl extends RestApiService<GeocodingResponse> impl
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     @Override
     public String getHost() {
         return host;

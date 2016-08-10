@@ -4,15 +4,15 @@
 <body>
 <div class="container">
     <div th:replace="layout :: flash"></div>
-    <div class="promt">
+    <div class="prompt">
         <div></div>
     </div>
     <div class="login">
         <h2>Login</h2>
         <form th:action="@{/login}" th:object="${user}" method="post">
-            <input th:field="*{username}" placeholder="username">
-            <input th:field="*{password}" type="password" placeholder="password">
-            <button type="submit">Sign In</button>
+            <input th:field="*{username}" placeholder="username"/>
+            <input th:field="*{password}" type="password" placeholder="password"/>
+            <button type="submit">Sign in</button>
         </form>
     </div>
 </div>

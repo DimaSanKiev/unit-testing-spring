@@ -23,17 +23,14 @@
                 <a th:href="@{/favorites}">my favorites</a>
             </li>
             <li>
-                <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
-                    <button type="submit">logout</button>
-                </form>
+                <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post"><button type="submit">logout</button></form>
                 <a sec:authorize="isAnonymous()" th:href="@{/login}">login</a>
             </li>
         </ul>
     </div>
     <div th:fragment="flash" th:if="${flash != null}">
         <div class="message">
-            <div th:classappend="${#strings.toLowerCase(flash.status)}" th:text="${flash.message}"
-                 class="flash"></div>
+            <div th:classappend="${#strings.toLowerCase(flash.status)}" th:text="${flash.message}" class="flash"></div>
         </div>
     </div>
     <div th:fragment="search" id="search-form">
@@ -43,8 +40,7 @@
     </div>
 </div>
 <footer th:fragment="footer">
-    <p><img th:src="@{/assets/images/google-maps-logo.png}" alt="Google Maps"/> + <img
-            th:src="@{/assets/images/dark-sky-logo.png}" alt="Forecast.io"/></p>
+    <p><img th:src="@{/assets/images/google-maps-logo.png}" alt="Google Maps"/> + <img th:src="@{/assets/images/dark-sky-logo.png}" alt="Forecast.io"/></p>
 </footer>
 </body>
 </html>
