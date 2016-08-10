@@ -23,7 +23,7 @@ public class WeatherController {
     private GeocodingService geocodingService;
 
     @RequestMapping("/geo")
-    public String getWeatherLocation(@RequestParam double lat, @RequestParam double lng, Model model) {
+    public String getWeatherForLocation(@RequestParam double lat, @RequestParam double lng, Model model) {
         Location loc = new Location(lat, lng);
         Weather weather = weatherService.findByLocation(loc);
         model.addAttribute("weather", weather);
