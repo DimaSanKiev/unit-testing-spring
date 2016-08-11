@@ -57,7 +57,19 @@ public class FavoriteControllerTest {
     @Test
     public void add_ShouldRedirectToNewFavorite() throws Exception {
         // Arrange the mock behavior
+        doAnswer(invocation -> {
+            Favorite f = (Favorite) invocation.getArguments()[0];
+            f.setId(1L);
+            return null;
+        }).when(service).save(any(Favorite.class));
+
         // Act (perform the MVC request) and Assert result
+        mockMvc.perform(
+                post("/favorites")
+                        .param("formattedAddress", "chikago, il")
+                        .param("placeId", "windycity")
+        ).andExpect(redirectedUrl("/favorites/1"));
+        verify(service).save(any(Favorite.class));
     }
 
     @Test
