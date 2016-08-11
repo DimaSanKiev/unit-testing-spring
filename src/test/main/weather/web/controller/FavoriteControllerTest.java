@@ -1,5 +1,6 @@
 package weather.web.controller;
 
+import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,6 +10,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import weather.domain.Favorite;
+import weather.exception.FavoriteNotFoundException;
 import weather.service.FavoriteService;
 
 import java.util.Arrays;
@@ -75,6 +77,12 @@ public class FavoriteControllerTest {
     @Test
     public void detail_ShouldErrorOnNotFound() throws Exception {
         // Arrange the mock behavior
+        when(service.findById(1L)).thenThrow(FavoriteNotFoundException.class);
+
         // Act (perform the MVC request) and Assert result
+        mockMvc.perform(get("/favorites/1"))
+                .andExpect(view().name("error"))
+                .andExpect(model().attribute("ex", Matchers.instanceOf(FavoriteNotFoundException.class)));
+        verify(service).findById(1L);
     }
 }
