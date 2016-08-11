@@ -8,9 +8,17 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import weather.domain.Favorite;
 import weather.service.FavoriteService;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static weather.domain.Favorite.FavoriteBuilder;
 
 @RunWith(MockitoJUnitRunner.class)
 public class FavoriteControllerTest {
@@ -30,7 +38,20 @@ public class FavoriteControllerTest {
     @Test
     public void index_ShouldIncludeFavoritesInModel() throws Exception {
         // Arrange the mock behavior
-        // Act (perform the MVC request) and Assert result
+        List<Favorite> favorites = Arrays.asList(
+                new FavoriteBuilder(1L).withAddress("Chikago").withPlaceId("chikago1").build(),
+                new FavoriteBuilder(2L).withAddress("Omaha").withPlaceId("omaha1").build()
+        );
+        when(service.findAll()).thenReturn(favorites);
+
+        // Act (perform the MVC request)
+        mockMvc.perform(get("/favorites"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("favorite/index"))
+                .andExpect(model().attribute("favorites", favorites));
+
+        // Assert result
+        verify(service).findAll();
     }
 
     @Test
