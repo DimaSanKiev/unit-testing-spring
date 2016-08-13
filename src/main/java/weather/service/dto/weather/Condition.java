@@ -7,7 +7,7 @@ import java.time.Instant;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Condition extends Dto {
-    private Instant name;
+    private Instant time;
     private String summary;
     private String icon;
     private double nearestStormDistance;
@@ -35,12 +35,12 @@ public class Condition extends Dto {
     private Instant sunriseTime;
     private Instant sunsetTime;
 
-    public Instant getName() {
-        return name;
+    public Instant getTime() {
+        return time;
     }
 
-    public void setName(Instant name) {
-        this.name = name;
+    public void setTime(Instant time) {
+        this.time = time;
     }
 
     public String getSummary() {
